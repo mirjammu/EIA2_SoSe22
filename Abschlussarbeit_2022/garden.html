@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Endabgabe EIA2 SS22</title>
+    <script src="/TS/vector/vector.js" defer></script>
+    <script src="/TS/plant/plant.js" defer></script>
+    <script src="/TS/tomatoe/tomatoe.js" defer></script>
+    <script src="/TS/aubergine/aubergine.js" defer></script>
+    <script src="/TS/carrot/carrot.js" defer></script>
+    <script src="/TS/potato/potato.js" defer></script>
+    <script src="/TS/zucchini/zucchini.js" defer></script>
+    <script src="/TS/pest/pest.js" defer></script>
+    <script src="/TS/formElements/form.js" defer></script>
+    <script src="/TS/cropField/cropfield.js" defer></script>
+    <script src="/TS/Main/main.js" defer></script>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <div id="chooseValueForm" class="text visible">
+        <form id="0">
+            <h4>Marktwert Samen</h4>
+            <label for="maxSeed">Maximalwert in $</label><br>
+            <input type="number" id="maxSeed" name="maxSeed" step="1" max="20" min="15" value="15"><br>
+            <label for="minSeed">Minimalwert in $</label><br>
+            <input type="number" id="minSeed" name="minSeed" step="1" max="15" min="5" value="5"><br>
+            <br>
+            <h4>Marktwert geerntetes Gemüse</h4>
+            <label for="maxHarvesting">Maximalwert in $</label><br>
+            <input type="number" id="maxHarvesting" name="maxHarvesting" step="1" max="80" min="40" value="40"><br>
+            <label for="minHarvesting">Minimalwert in $</label><br>
+            <input type="number" id="minHarvesting" name="minHarvesting" step="1" max="30" min="20" value="20"><br>
+            <br>
+            <h4>Marktwert Garten Zübehör (Dünger, Pestizide)</h4>
+            <label for="maxEquipment">Maximalwert in $</label><br>
+            <input type="number" id="maxEquipment" name="maxEquipment" step="1" max="35" min="20" value="20"><br>
+            <label for="minEquipment">Minimalwert in $</label><br>
+            <input type="number" id="minEquipment" name="minEquipment" step="1" max="15" min="10" value="10"><br>
+            <br>
+            <label for="capitalSelect">Startkapital</label><br>
+            <select name="capital" id="capitalSelect">
+                <option value="300">300$</option>
+                <option value="500">500$</option>
+                <option value="1000">1000$</option>
+            </select>
+            <br>
+            <br>
+            <input type="button" id="startBtn" value="Starten">
+
+        </form>
+    </div>
+
+    <h1>Garten Simulation</h1>
+
+    <div class="container">
+        <div id="formLeft" class="flex">
+            <h2>Kapital</h2>
+            <p id="capital">0$</p>
+            <p>Verkaufspreis Tomaten
+            <p id="sellValueTomatoe">0$</p>
+            </p>
+            <p>Verkaufspreis Aubergine
+            <p id="sellValueAubergine">0$</p>
+            </p>
+            <p>Verkaufspreis Kartoffeln
+            <p id="sellValuePotato">0$</p>
+            </p>
+            <p>Verkaufspreis Karotten
+            <p id="sellValueCarrot">0$</p>
+            </p>
+            <p>Verkaufspreis Zuchini
+            <p id="sellValueZuchini">0$</p>
+            </p>
+        </div>
+
+        <canvas></canvas>
+
+        <div id="formRight" class="flex">
+            <div>
+                <h4>Pflanzen:</h4>
+                <button class="menuBtn" id="menuBtnTomatoe" value="tomatoe">
+                    <p>Tomaten</p>
+                    <p id="buyValueTomatoe">10$</p>
+                </button>
+                <button class="menuBtn" id="menuBtnAubergine" value="aubergine">
+                    <p>Aubergine</p>
+                    <p id="buyValueAubergine">10$</p>
+                </button>
+                <button class="menuBtn" id="menuBtnPotato" value="potato">
+                    <p>Kartoffeln</p>
+                    <p id="buyValuePotato">10$</p>
+                </button>
+                <button class="menuBtn" id="menuBtnCarrots" value="carrot">
+                    <p>Karotten</p>
+                    <p id="buyValueCarrot">10$</p>
+                </button>
+                <button class="menuBtn" id="menuBtnZucchini" value="zucchini">
+                    <p>Zuchini</p>
+                    <p id="buyValueZuchini">10$</p>
+                </button>
+            </div>
+            <br>
+            <h4>Aktionen:</h4>
+            <button class="menuBtn" id="menuBtnWater" value="water">
+                <p>Gießen</p>
+                <p>Unbegrenzt</p>
+            </button>
+            <button class="menuBtn" id="menuBtnFertilize" value="fertilize">
+                <p>Düngern</p>
+                <p id="buyValueFertilize">10$</p>
+            </button>
+            <button class="menuBtn" id="menuBtnHarvest" value="harvest">
+                <p>Ernten</p>
+            </button>
+            <button class="menuBtn" id="menuBtnPesticide" value="pesticide">
+                <p>Pestizid</p>
+                <p id="buyValuePesticide">10$</p>
+            </button>
+        </div>
+    </div>
+    
+
+
+
+    <img class="hideImg" id="canvasBackground" src="/assets/background.png" />
+    <img class="hideImg" id="tomatoeSeed" src="/assets/seed-tomatoe.png" />
+    <img class="hideImg" id="tomatoeStage1" src="/assets/tomatoe-stage-1.png" />
+    <img class="hideImg" id="tomatoeStage2" src="/assets/tomatoe-stage-2.png" />
+
+    <img class="hideImg" id="aubergineSeed" src="/assets/seed-aubergine.png" />
+    <img class="hideImg" id="aubergineStage1" src="/assets/aubergine-stage-1.png" />
+    <img class="hideImg" id="aubergineStage2" src="/assets/aubergine-stage-2.png" />
+
+    <img class="hideImg" id="potatoSeed" src="/assets/seed-potato.png" />
+    <img class="hideImg" id="potatoStage1" src="/assets/potato-stage-1.png" />
+    <img class="hideImg" id="potatoStage2" src="/assets/potato-stage-2.png" />
+
+    <img class="hideImg" id="carrotSeed" src="/assets/seed-carrot.png" />
+    <img class="hideImg" id="carrotStage1" src="/assets/carrot-stage-1.png" />
+    <img class="hideImg" id="carrotStage2" src="/assets/carrot-stage-2.png" />
+
+    <img class="hideImg" id="zucchiniSeed" src="/assets/seed-zucchini.png" />
+    <img class="hideImg" id="zucchiniStage1" src="/assets/zucchini-stage-1.png" />
+    <img class="hideImg" id="zucchiniStage2" src="/assets/zucchini-stage-2.png" />
+
+
+</body>
+
+</html>
