@@ -1,8 +1,8 @@
 namespace Endabgabe_SS22 {
     /*
-    Aufgabe: <EIA2-Endabgabe-Fußball Simulation>
+    Aufgabe: <EIA2-Endabgabe-Garten-Simulation>
     Name: <Mirjam Mutter>
-    Matrikel: <???????>
+    Matrikel: <267236>
     Datum: <19.07.2022>
     Quellen: 
     */
